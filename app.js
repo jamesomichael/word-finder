@@ -30,7 +30,7 @@ const findWords = () => {
             }
         }
     }
-    console.log(`> Words found:\n  -- ${foundWords.sort().join('\n  -- ')}`);
+    console.log(`> ${foundWords.length} words found:\n  -- ${foundWords.sort().join('\n  -- ')}`);
     return foundWords;
 };
 
