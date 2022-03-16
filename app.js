@@ -1,12 +1,13 @@
 const wordlist = require('wordlist-english');
 const fs = require('fs');
+
 const englishWords = wordlist['english'];
 
 const WORD_LENGTH = 5;
 const AVAILABLE_LETTERS = ['x', 'a', 'e', 'w', 't', 's', 'm'];
 let tempAvailableLetters = [...AVAILABLE_LETTERS];
 
-const correctLengthWords = WORD_LENGTH ? englishWords.filter((el) => el.length === WORD_LENGTH) : englishWords;
+const correctLengthWords = WORD_LENGTH ? englishWords.filter((word) => word.length === WORD_LENGTH) : englishWords.filter((word) => word.length > 1);
 const validWords = correctLengthWords.filter((word) => word.split('').every((char) => AVAILABLE_LETTERS.includes(char)));
 
 const findWords = () => {
@@ -14,6 +15,7 @@ const findWords = () => {
     console.log(`> Word length: ${WORD_LENGTH}`);
     const foundWords = [];
     for (const word of validWords) {
+        tempAvailableLetters = [...AVAILABLE_LETTERS];
         for (let i = 0; i < word.length; i += 1) {
             const char = word[i];
             if (tempAvailableLetters.includes(char)) {
